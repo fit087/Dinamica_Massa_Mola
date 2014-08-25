@@ -15,10 +15,13 @@ function  SMDode_linear(Mass,Damping, Stiffness)
    Mass = 10;       % [kg]
    Damping=50;      % [Nsec^2/m^2] 
    Stiffness=200;   % [N/m]   
+   Posicao=0;
+   Velocidade=1;
  end
 
 tspan = [0; max(20,5*(Damping/Mass))]; % Several periods
-u0 = [0; 1];                           % Initial conditions 
+% u0 = [0; 1];                           % Initial conditions 
+u0 = [Posicao; Velocidade];            % Initial conditions
 options = odeset('Jacobian',@J);       % Options for ODESETs can be switched off
 
 [t,u] = ode45(@f,tspan,u0,options);
